@@ -1,15 +1,12 @@
 <!DOCTYPE html>
     <html lang="en">
     <head>
+        <!-- @author Alejandro Serrano Loredo -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Test Verbos Irregulares</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
-        <style>
-            .cajaTexto {
-                max-height: 25px;
-            }
-        </style>
+        
     </head>
     <body>
         <div class="container">
@@ -18,22 +15,59 @@
                     <button id="castellano" class="btn btn-block btn-info disabled"></button>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12">
+                    <button id="marcador" class="btn btn-block btn-secondary disabled">0</button>
+                </div>
+            </div>
             <br />
             <div class="row text-center ">
-                    <div class="col-xs-4" id="boton1">
-                        
-                    </div>
-                    <div class="col-xs-4" id="boton2">
-                        <button  class="btn bg-warning text-white btn-block"></button>
-                    </div>
-                    <div class="col-xs-4" id="boton3">
-                        <button  class="btn bg-warning text-white btn-block"></button>
-                    </div>
+                    <div class="col" id="boton1"></div>
+                    <div class="col" id="boton2"></div>
+                    <div class="col" id="boton3"></div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-12">
+                    <button id="botonResultado" class="btn btn-block btn-dark" onclick="comprueba();"></button>
                 </div>
             </div>
         </div>
         <script src="js/listaVerbos.js"></script>
         <script>
+
+            var verboElegido = -1;
+            var tiempoAAdivinar = -1;
+            var jugando = 0;
+            var marcador = true;
+
+            function comprueba(){
+                if(jugando == true){
+                    jugando = false; //indicar que estoy chequeando y no sigue jugando
+                    //leemos el contenido de la caja que es lo que ha escrito el usuario
+                    var verboLeido = document.getElementById("caja").value;
+
+                    document.getElementById("botonResultado").classList.remove("btn-dark");
+
+                    if(verbos[verboElegido][tiempoAAdivinar] == verboLeido){
+                        marcador++;
+                        document.getElementById("botonResultado").classList.add("btn-success");
+                        document.getElementById("botonResultado").innerText = "CORRECT"
+                    } else {
+                        marcador = 0;
+                        document.getElementById("botonResultado").classList.add("btn-danger");
+                        document.getElementById("botonResultado").innerText = verbos[verboElegido][tiempoAAdivinar];
+                    }
+                } else {
+                    document.getElementById("botonResultado").classList.remove("btn-success");
+                    document.getElementById("botonResultado").classList.remove("btn-danger");
+                    document.getElementById("botonResultado").classList.add("btn-dark");
+                    jugando = true;
+                    eligeVerbo(); 
+                }
+                document.getElementById("marcador").innerText = marcador;
+            }
 
             function randomIntFromInterval(min, max) { 
                 // min and max included 
@@ -41,30 +75,29 @@
             }
 
             function eligeVerbo() {
-                var verboElegido = randomIntFromInterval(0, verbos.length);
-                var tiempoAAdivinar = randomIntFromInterval(0, 3);
+                verboElegido = randomIntFromInterval(0, verbos.length);
+                tiempoAAdivinar = randomIntFromInterval(0, 2);
+                console.log(verbos[verboElegido][tiempoAAdivinar]);
                 document.getElementById("castellano").innerHTML = verbos[verboElegido][3];
                 
                 switch (tiempoAAdivinar){
                     case 0:
                         document.getElementById("boton1").innerHTML = "<input  id='caja' class='form-control' /> ";
-                        document.getElementById("boton2").innerHTML = "<button class='btn bg-warning text-white btn-block'>"+ verbos[verboElegido][1] + "</button>";
-                        document.getElementById("boton3").innerHTML = "<button class='btn bg-warning text-white btn-block'>"+ verbos[verboElegido][2] + "</button>";
+                        document.getElementById("boton2").innerHTML = "<button class='btn bg-warning text-white btn-block disabled'>"+ verbos[verboElegido][1] + "</button>";
+                        document.getElementById("boton3").innerHTML = "<button class='btn bg-warning text-white btn-block disabled'>"+ verbos[verboElegido][2] + "</button>";
                     break;
                     case 1:
-                        document.getElementById("boton1").innerHTML = "<button class='btn bg-warning text-white btn-block'>"+ verbos[verboElegido][0] + "</button>";
+                        document.getElementById("boton1").innerHTML = "<button class='btn bg-warning text-white btn-block disabled'>"+ verbos[verboElegido][0] + "</button>";
                         document.getElementById("boton2").innerHTML = "<input  id='caja' class='form-control' /> ";
-                        document.getElementById("boton3").innerHTML = "<button class='btn bg-warning text-white btn-block'>"+ verbos[verboElegido][2] + "</button>";
+                        document.getElementById("boton3").innerHTML = "<button class='btn bg-warning text-white btn-block disabled'>"+ verbos[verboElegido][2] + "</button>";
                     break;
                     default:
-                        document.getElementById("boton1").innerHTML = "<button class='btn bg-warning text-white btn-block'>"+ verbos[verboElegido][0] + "</button>";
-                        document.getElementById("boton2").innerHTML = "<button class='btn bg-warning text-white btn-block'>"+ verbos[verboElegido][1] + "</button>";
-                        document.getElementById("boton3").innerHTML = "<input  id='caja' class='class='form-control ' /> ";
+                        document.getElementById("boton1").innerHTML = "<button class='btn bg-warning text-white btn-block disabled'>"+ verbos[verboElegido][0] + "</button>";
+                        document.getElementById("boton2").innerHTML = "<button class='btn bg-warning text-white btn-block disabled'>"+ verbos[verboElegido][1] + "</button>";
+                        document.getElementById("boton3").innerHTML = "<input  id='caja' class='class='form-control' /> ";
                     break;
                 }
-
-
-
+                document.getElementById("botonResultado").innerText = "COMPROBAR";
             }
 
             eligeVerbo();
