@@ -1,0 +1,26 @@
+body {
+    background-color: #f2f2f2;
+}
+
+#nivel,
+#appname,
+#marcador {
+    height: 50px;
+}
+
+#botonResultado,
+#marcador,
+#labelNumVerbos,
+#fila01,
+#fila02 {
+    margin-top: 15px;
+}
+
+#botonResultado {
+    margin-bottom: 15px;
+}
+
+.bandera {
+    width: 48px;
+    height: 32px;
+}

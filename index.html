@@ -1,107 +1,107 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <!-- @author Alejandro Serrano Loredo -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Test Verbos Irregulares</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
-        
-    </head>
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <button id="castellano" class="btn btn-block btn-info disabled"></button>
-                </div>
+<html lang="en">
+
+<head>
+    <!-- @author Alejandro Serrano Loredo -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Verbos Irregulares</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/mystyle.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row text-center ">
+            <div class="col">
+                <div id="nivel" class="alert bg-primary text-white d-none" role="alert"></div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <button id="marcador" class="btn btn-block btn-secondary disabled">0</button>
-                </div>
+        </div>
+        <div class="row  text-center ">
+            <div class="col">
+                <div id="appname" class="alert bg-ligth text-dark" role="alert"><img class="bandera" src="img/ukflag.png" alt="UK flag"
+                         />Test verbos irregulares<img class="bandera" src="img/ukflag.png" alt="UK flag" /></div>
             </div>
-            <br />
-            <div class="row text-center ">
-                    <div class="col" id="boton1"></div>
-                    <div class="col" id="boton2"></div>
-                    <div class="col" id="boton3"></div>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div id="marcador" class="alert bg-secondary d-none" role="alert"></div>
             </div>
-            <br />
-            <div class="row">
-                <div class="col-12">
-                    <button id="botonResultado" class="btn btn-block btn-dark" onclick="comprueba();"></button>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div id="castellano" class="alert alert-info text-center d-none" role="alert"></div>
+            </div>
+        </div>
+        <div id="verbos" class="row text-center d-none">
+            <div class="col">
+                <div class="col" id="boton1"></div>
+                <div class="col" id="boton2"></div>
+                <div class="col" id="boton3"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button id="botonResultado" class="btn btn-block btn-dark d-none"></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button id="cambiaNivel" class="btn btn-block btn-primary" onclick="cambiaNivel();">Cambia de Nivel</button>
+            </div>
+        </div>
+        <div class="row  text-center ">
+            <div class="col">
+                <div id="labelNumVerbos" class="alert bg-secondary text-white" role="alert">Elige el número de verbos
                 </div>
             </div>
         </div>
-        <script src="js/listaVerbos.js"></script>
-        <script>
+        <div id="btnsEligeNumVerbos">
+            <div id="fila01" class="row">
+                <div class="col-1"></div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" onclick="eligeNumVerbos(10);">10</button>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" onclick="eligeNumVerbos(20);">20</button>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" onclick="eligeNumVerbos(30);">30</button>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" onclick="eligeNumVerbos(40);">40</button>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" onclick="eligeNumVerbos(50);">50</button>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div id="fila02" class="row">
+                <div class="col-2"></div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" onclick="eligeNumVerbos(60);">60</button>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" onclick="eligeNumVerbos(70);">70</button>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" onclick="eligeNumVerbos(80);">80</button>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" onclick="eligeNumVerbos(140);">140</button>
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/listaVerbos.js"></script>
+    <script type="text/javascript" src="js/mejoras_parte_A.js"></script>    
+    <script type="text/javascript" src="js/mejoras_parte_B.js"></script>  
+</body>
 
-            var verboElegido = -1;
-            var tiempoAAdivinar = -1;
-            var jugando = 0;
-            var marcador = true;
-
-            function comprueba(){
-                if(jugando == true){
-                    jugando = false; //indicar que estoy chequeando y no sigue jugando
-                    //leemos el contenido de la caja que es lo que ha escrito el usuario
-                    var verboLeido = document.getElementById("caja").value;
-
-                    document.getElementById("botonResultado").classList.remove("btn-dark");
-
-                    if(verbos[verboElegido][tiempoAAdivinar] == verboLeido){
-                        marcador++;
-                        document.getElementById("botonResultado").classList.add("btn-success");
-                        document.getElementById("botonResultado").innerText = "CORRECT"
-                    } else {
-                        marcador = 0;
-                        document.getElementById("botonResultado").classList.add("btn-danger");
-                        document.getElementById("botonResultado").innerText = verbos[verboElegido][tiempoAAdivinar];
-                    }
-                } else {
-                    document.getElementById("botonResultado").classList.remove("btn-success");
-                    document.getElementById("botonResultado").classList.remove("btn-danger");
-                    document.getElementById("botonResultado").classList.add("btn-dark");
-                    jugando = true;
-                    eligeVerbo(); 
-                }
-                document.getElementById("marcador").innerText = marcador;
-            }
-
-            function randomIntFromInterval(min, max) { 
-                // min and max included 
-                return Math.floor(Math.random() * (max - min + 1) + min);
-            }
-
-            function eligeVerbo() {
-                verboElegido = randomIntFromInterval(0, verbos.length);
-                tiempoAAdivinar = randomIntFromInterval(0, 2);
-                console.log(verbos[verboElegido][tiempoAAdivinar]);
-                document.getElementById("castellano").innerHTML = verbos[verboElegido][3];
-                
-                switch (tiempoAAdivinar){
-                    case 0:
-                        document.getElementById("boton1").innerHTML = "<input  id='caja' class='form-control' /> ";
-                        document.getElementById("boton2").innerHTML = "<button class='btn bg-warning text-white btn-block disabled'>"+ verbos[verboElegido][1] + "</button>";
-                        document.getElementById("boton3").innerHTML = "<button class='btn bg-warning text-white btn-block disabled'>"+ verbos[verboElegido][2] + "</button>";
-                    break;
-                    case 1:
-                        document.getElementById("boton1").innerHTML = "<button class='btn bg-warning text-white btn-block disabled'>"+ verbos[verboElegido][0] + "</button>";
-                        document.getElementById("boton2").innerHTML = "<input  id='caja' class='form-control' /> ";
-                        document.getElementById("boton3").innerHTML = "<button class='btn bg-warning text-white btn-block disabled'>"+ verbos[verboElegido][2] + "</button>";
-                    break;
-                    default:
-                        document.getElementById("boton1").innerHTML = "<button class='btn bg-warning text-white btn-block disabled'>"+ verbos[verboElegido][0] + "</button>";
-                        document.getElementById("boton2").innerHTML = "<button class='btn bg-warning text-white btn-block disabled'>"+ verbos[verboElegido][1] + "</button>";
-                        document.getElementById("boton3").innerHTML = "<input  id='caja' class='class='form-control' /> ";
-                    break;
-                }
-                document.getElementById("botonResultado").innerText = "COMPROBAR";
-            }
-
-            eligeVerbo();
-
-        </script>
-    </body>
 </html>
