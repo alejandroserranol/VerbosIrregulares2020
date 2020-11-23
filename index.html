@@ -18,13 +18,14 @@
     <div class="container">
         <div class="row text-center ">
             <div class="col">
-                <div id="nivel" class="alert bg-primary text-white d-none" role="alert"></div>
+                <div id="nivel" class="alert bg-primary text-warning d-none" role="alert"></div>
             </div>
         </div>
         <div class="row  text-center ">
             <div class="col">
-                <div id="appname" class="alert bg-ligth text-dark" role="alert"><img class="bandera" src="img/ukflag.png" alt="UK flag"
-                         />Test verbos irregulares<img class="bandera" src="img/ukflag.png" alt="UK flag" /></div>
+                <div id="appname" class="alert bg-ligth text-dark" role="alert">
+                    <img class="bandera" src="img/ukflag.png" alt="UK flag" />Test verbos irregulares
+                    <img class="bandera" src="img/ukflag.png" alt="UK flag" /></div>
             </div>
         </div>
         <div class="row">
@@ -51,7 +52,8 @@
         </div>
         <div class="row">
             <div class="col">
-                <button id="cambiaNivel" class="btn btn-block btn-primary" onclick="cambiaNivel();">Cambia de Nivel</button>
+                <button id="cambiaNivel" class="btn btn-block btn-primary" onclick="cambiaNivel();">Cambia de
+                    Nivel</button>
             </div>
         </div>
         <div class="row  text-center ">
@@ -100,8 +102,56 @@
     </div>
     <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="js/listaVerbos.js"></script>
-    <script type="text/javascript" src="js/mejoras_parte_A.js"></script>    
-    <script type="text/javascript" src="js/mejoras_parte_B.js"></script>  
+    <!-- <script type="text/javascript" src="js/mejoras_parte_C.js"></script>
+    <script type="text/javascript" src="js/mejoras_parte_A.js"></script>
+    <script type="text/javascript" src="js/mejoras_parte_B.js"></script> -->
+    <div id="mejoras"></div>
+    <script type="text/javascript" language="JavaScript">
+        $("document").ready(function () {
+            var contador = 0;
+            while (contador < 3) {
+                switch (contador) {
+                    case 0:
+                        $.ajax({
+                            url: "mejoras_parte_C.html",
+                            context: document.body,
+                            success: function (response) {
+                                $("#mejoras").append(response);
+                            }
+                        });
+                        break;
+                    case 1:
+                        $.ajax({
+                            url: "mejoras_parte_B.html",
+                            context: document.body,
+                            success: function (response) {
+                                $("#mejoras").append(response);
+                            }
+                        });
+                        break;
+                    default:
+                        $.ajax({
+                            url: "mejoras_parte_A.html",
+                            context: document.body,
+                            success: function (response) {
+                                $("#mejoras").append(response);
+                            }
+                        });
+                        break;
+                }
+                contador++;
+            }
+        });
+    </script>
+    <script>
+        /*$(document).ready(function () {
+
+            $("#includedContent").load("parte_C.html");
+            $("#includedContent").load("parte_B.html");
+            $("#includedContent").load("parte_A.html");
+
+        });*/
+    </script>
 </body>
 
 </html>
