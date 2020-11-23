@@ -3,7 +3,7 @@
 
 <head>
     <!-- @author Alejandro Serrano Loredo -->
-    
+
 </head>
 
 <body>
@@ -19,8 +19,12 @@
         var numVerbos = 0;
         var icono = "";
 
+        var nombreCookie = "";
+
         function eligeNumVerbos(_numVerbos) {
             numVerbos = _numVerbos;
+            marcador = 0;
+            nombreCookie = 'estrellasGrandes'+_numVerbos;
 
             jugando = true;
 
@@ -42,6 +46,11 @@
             $("#castellano").removeClass("d-none");
             $("#verbos").removeClass("d-none");
             $("#botonResultado").removeClass("d-none");
+
+            if(getCookie(nombreCookie) == null){
+                setCookie(nombreCookie, String(marcador), 7);
+            }
+
         }
 
         function cambiaNivel() {

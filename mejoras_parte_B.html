@@ -21,7 +21,8 @@
 
             $("#botonResultado").click(
                 function comprueba() {
-
+                    //console.log(nombreCookie);
+                    
                     switch (marcador) {
                         case numVerbos:
                             jugando = false;
@@ -37,12 +38,16 @@
                                 $("#botonResultado").removeClass("btn-dark");
                                 if (!verboAAdivinar.includes("/")) {
                                     if (verboAAdivinar == verboLeido) {
-                                        marcador++;
+                                        marcador = parseInt(getCookie(nombreCookie))+1;
+                                        eraseCookie('nombreCookie');
+                                        setCookie(nombreCookie, String(marcador), 7);
                                         $("#marcador").append(icono);
                                         $("#botonResultado").addClass("btn-success");
                                         $("#botonResultado").text("CORRECT");
                                     } else {
                                         marcador = 0;
+                                        eraseCookie('nombreCookie');
+                                        setCookie(nombreCookie, String(marcador), 7);
                                         $("#marcador").text("");
                                         $("#botonResultado").addClass("btn-danger");
                                         $("#botonResultado").text(verbos[verboElegido][tiempoAAdivinar]);
